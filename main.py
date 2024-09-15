@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # CORSミドルウェアの設定
+
 orig_startup = "https://miaon.onrender.com"
 app.add_middleware(
     CORSMiddleware,
@@ -17,7 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # 静的ファイルを提供する設定
 app.mount("/static", StaticFiles(directory="static"), name="static")
 

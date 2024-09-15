@@ -12,7 +12,7 @@ app = FastAPI()
 orig_startup = "https://miaon.onrender.com"
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[orig_startup],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

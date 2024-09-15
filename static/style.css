@@ -1,0 +1,65 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #555;
+}
+
+/* コンテナのスタイル */
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    border: 2px solid #fbc2eb;
+}
+
+/* 見出しのスタイル */
+h1 {
+    font-size: 2.5em;
+    color: #ff69b4;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* 時間表示のスタイル */
+.time-display {
+    font-size: 4em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ffb6c1;
+    padding: 25px;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 6px 12px rgba(255, 182, 193, 0.3);
+    letter-spacing: 4px;
+    border: 3px solid #ff69b4;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 時間表示にホバー効果 */
+.time-display:hover {
+    background-color: #ff69b4;
+    box-shadow: 0 6px 12px rgba(255, 105, 180, 0.4);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .time-display {
+        font-size: 3em;
+        padding: 20px;
+    }
+}

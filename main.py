@@ -10,10 +10,9 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # CORSミドルウェアの設定
-orig_startup = "https://miaon.onrender.com"
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[orig_startup],
+    allow_origins=["*"],  # ここを必要に応じて適切なURLに設定
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

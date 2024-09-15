@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Time Display</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script>
+        let ws;
+        function initWebSocket() {
+            ws = new WebSocket("wss://miaon.onrender.com/ws");
+            ws.onmessage = function(event) {
+                document.getElementById("timeDisplay").innerText = "Current Time: " + event.data;
+            };
+        }
+        window.onload = initWebSocket;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Time Display</h1>
+        <div id="timeDisplay" class="time-display">Current Time: Not Available</div>
+    </div>
+</body>
+</html>

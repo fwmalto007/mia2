@@ -1,5 +1,6 @@
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
 from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from typing import List
 from pydantic import BaseModel
@@ -9,17 +10,20 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # CORSミドルウェアの設定
-
 orig_startup = "https://miaon.onrender.com"
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[orig_startup],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 # 静的ファイルを提供する設定
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Jinja2 テンプレートの設定
+templates = Jinja2Templates(directory="templates")
 
 # WebSocket接続を保持するためのリスト
 connections: List[WebSocket] = []
@@ -44,10 +48,10 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         connections.remove(websocket)
 
-@app.get("/")
-async def get():
-    # index.html を返すために静的ファイルを提供するパスを設定
-    return HTMLResponse(content=open("static/index.html").read())
+@app.get("/", response_class=HTMLResponse)
+async def get(request: Request):
+    # テンプレートを使って動的なデータを渡す
+    return templates.TemplateResponse("index.html", {"request": request, "time": "2024-09-15T12:00:00Z"})
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=80)

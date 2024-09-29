@@ -43,7 +43,7 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_text()
-            print(f"Received data from websocket: {data}")
+            print(f"Received data from websocket: {type(data)}")
     except WebSocketDisconnect:
         connections.remove(websocket)
 

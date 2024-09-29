@@ -47,7 +47,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 raw_data = '00:' + time_str
             datetime_obj = datetime.datetime.strptime(raw_data, "%H:%M:%S")
             one_second_later = datetime_obj + datetime.timedelta(seconds=1)
-            data = one_second_later.strftime("%H:%M:%S"))            
+            data = one_second_later.strftime("%H:%M:%S")            
             print(f"Received data from websocket: {data}")
     except WebSocketDisconnect:
         connections.remove(websocket)

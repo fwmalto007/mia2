@@ -46,7 +46,7 @@ async def websocket_endpoint(websocket: WebSocket):
             while len(raw_data) != 8:
                 raw_data = '00:' + time_str
             datetime_obj = datetime.datetime.strptime(raw_data, "%H:%M:%S")
-            one_second_later = datetime_obj + datetime.timedelta(seconds=1)
+            one_second_later = datetime_obj + datetime.timedelta(seconds=2)
             data = one_second_later.strftime("%H:%M:%S")            
             print(f"Received data from websocket: {data}")
     except WebSocketDisconnect:
